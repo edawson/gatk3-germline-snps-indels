@@ -1,0 +1,12 @@
+#!/bin/bash
+
+java -jar \
+    -Xmx14g \
+    -Xmx7g \
+    -XX:ConcGCThreads=1 \
+    -Djava.io.tmpdir=$TMPDIR \
+    -Dsamjdk.use_async_io_read_samtools=false \
+    -Dsamjdk.use_async_io_write_samtools=true \
+    -Dsamjdk.use_async_io_write_tribble=false \
+    -Dsamjdk.compression_level=2 \
+    ${PICARD_JAR} "$@"
