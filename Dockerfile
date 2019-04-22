@@ -34,6 +34,7 @@ WORKDIR /app
 ADD GenomeAnalysisTK.jar /app/
 ADD picard.jar /app/
 ADD gatk /app/
+ADD picard /app/
 
 RUN git clone --recursive https://github.com/samtools/htslib.git
 RUN cd htslib && autoheader &&  autoconf && ./configure && make -j 4 && make install
@@ -50,5 +51,7 @@ COPY jre-8u201-linux-x64.tar.gz /app/
 RUN tar xvzf jre-8u201-linux-x64.tar.gz && mkdir -p /opt/jre && mv jre1.8.0_201/ /opt/jre && \
     update-alternatives --install /usr/bin/java java /opt/jre/jre1.8.0_201/bin/java 100
 RUN chmod 777 gatk && mv gatk /usr/bin/
-ENV GATK_JAR=/usr/bin/GenomeAnalysisTK.jar
+RUN chmod 777 gatk-lite && mv gatk-lite /usr/bin/
+RUN chmod 777 picard && mv picard /usr/bin/
+ENV GATK_JAR=/usr/bin/GenomeAnalysisTK-3.8-1-0.jar
 ENV PICARD_JAR=/usr/bin/picard.jar
