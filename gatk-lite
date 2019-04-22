@@ -1,8 +1,8 @@
 #!/bin/bash
 
 java -jar \
-    -Xmx28g \
-    -Xms7g \
+    -Xmx7g \
+    -Xms3g \
     -XX:ConcGCThreads=1 \
     -Djava.io.tmpdir=$TMPDIR \
     -Dsamjdk.use_async_io_read_samtools=false \
